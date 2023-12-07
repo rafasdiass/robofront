@@ -1,0 +1,87 @@
+.content-container {
+    width: 100%;
+    overflow-y: auto;
+    padding: 16px;
+    margin-bottom: 40px;
+  }
+  
+  .page-title-container {
+    text-align: center;
+    background-color: #4CAF50;
+    padding: 10px;
+    color: white;
+  }
+  
+  .page-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .input-card {
+    width: 100%;
+    margin: 16px auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+  
+    ion-card-content {
+      ion-item {
+        margin-bottom: 12px;
+        background-color: #fff;
+      }
+    }
+  }
+  
+  .entry-card {
+    margin: 8px;
+    background-color: #525252;
+  
+    ion-card-content {
+      background-color: #525252;
+      color: white;
+    }
+  }
+  
+  .entry-col {
+    text-align: center;
+    font-size: 12px;
+    padding: 8px;
+    color: #ffffff;
+   
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .entry-value,
+  .lucro,
+  .calculated-value {
+    font-weight: bold;
+  }
+  
+  .entry-value {
+    color: #ff9900;
+  }
+  
+  .lucro {
+    color: #ffcc00;
+  }
+  
+  .calculated-value {
+    color: #00cc00;
+  }
+  
+  .input-item {
+    ion-label {
+      font-weight: bold;
+    }
+    ion-input {
+      text-align: right;
+    }
+  }
+  
+  // Media query para telas maiores
+  @media (min-width: 768px) {
+    .input-card {
+      width: 40%;
+    }
+  }
+  

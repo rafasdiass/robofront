@@ -1,0 +1,30 @@
+<ion-content>
+  <ion-toolbar>
+    <ion-title>
+      Sinais do Robô
+    </ion-title>
+  </ion-toolbar>
+
+  <!-- Exibe a lista se houver decisões -->
+  <ion-list *ngIf="decisions.length > 0">
+    <ion-item *ngFor="let decision of decisions; let isLast = last"
+              [ngClass]="{
+                'buy-signal': decision.decision === 'Compra',
+                'sell-signal': decision.decision === 'Venda',
+                'no-signal': decision.decision === 'Sem sinal',
+                'indecision-signal': decision.decision === 'Indecisão',
+                'last-item': isLast
+              }">
+      <ion-label>
+        <h2>{{ decision.currencyPair }}</h2>
+        <p>{{ decision.decision }}</p>
+        <p>{{ decision.time }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Exibe uma mensagem se a lista estiver vazia -->
+  <div *ngIf="decisions.length === 0">
+    <p>Nenhum sinal disponível no momento.</p>
+  </div>
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+     Robocoins - Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="icon-bank">
+    <ion-icon name="shield-outline"></ion-icon>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="errorMessage">
+      <ion-label color="danger">{{ errorMessage }}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" [disabled]="loginForm.invalid">
+      Entrar
+    </ion-button>
+
+    <div class="social-login">
+      <p>Ou entre com:</p>
+      <ion-button class="google-button" (click)="socialLogin('google')">
+        <ion-icon name="logo-google"></ion-icon> mail
+      </ion-button>
+    </div>
+  
+    <div class="register-redirect">
+      <p>Não possui uma conta? <ion-button fill="clear" (click)="register()">Clique aqui</ion-button></p>
+    </div>
+  </form>
+</ion-content>

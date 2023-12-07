@@ -1,0 +1,19 @@
+<div class="dashboard">
+  <!-- Seção para exibir dados de ações -->
+  <div class="stocks-section">
+    <h2>Dados das Ações</h2>
+    <div *ngFor="let stock of stocks; let i = index">
+      <p>{{ chartLabels[i] }}: {{ stock.close }}</p>
+    </div>
+  </div>
+
+  <!-- Seção para exibir o gráfico de ações -->
+  <div>
+    <canvas baseChart 
+            [datasets]="chartData"
+            [labels]="chartLabels"
+            [options]="chartOptions"
+            [type]="chartType">
+    </canvas>
+  </div>
+</div>

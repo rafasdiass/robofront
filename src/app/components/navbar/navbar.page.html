@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>RobotCoins</ion-title>
+    <ion-label class="login" slot="end" (click)="toggleAuthentication()">
+      {{ isLoggedIn ? 'Logout' : 'Login' }}
+    </ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu side="start" menuId="first" contentId="main-content" class="menu-container">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="openRoboSignals()" class="robo-button">
+        <ion-icon name="analytics-outline"></ion-icon>
+        Sinais de Robo
+      </ion-item>
+      <ion-item (click)="openSorosStrategy()" class="soros-button">
+        <ion-icon name="cash-outline"></ion-icon>
+        Soros Martingale
+      </ion-item>
+      <ion-item (click)="openBankManagement()" class="bank-button">
+        <ion-icon name="wallet-outline"></ion-icon>
+        Juros Simples
+      </ion-item>
+      <ion-item (click)="openCompoundInterest()" class="compound-interest-button">
+        <ion-icon name="calculator-outline"></ion-icon>
+        Juros Composto
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>
