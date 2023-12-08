@@ -12,11 +12,11 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getRoboDecisions(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/robo-decisions`);
+    return this.http.get<any>(`${this.apiUrl}/decisoes-robo`);
   }
 
   // Método adicionado para buscar dados de ações
   getStockData(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/stock-data`); // Substitua 'stock-data' pelo endpoint correto
+    return this.http.get<any>(`${this.apiUrl}/dados-par-moeda`); // Substitua 'stock-data' pelo endpoint correto
   }
 }
