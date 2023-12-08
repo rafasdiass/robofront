@@ -1,3 +1,4 @@
+// app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -7,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarPageModule } from './components/navbar/navbar.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgChartsModule } from 'ng2-charts';  // Corrigido aqui
+import { NgChartsModule } from 'ng2-charts';
 
 // AngularFire
 import { provideAuth, getAuth } from '@angular/fire/auth';
@@ -18,10 +19,11 @@ import { initializeApp } from 'firebase/app';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
 // Services
-
 import { ApiService } from './services/api.service';
-
 import { AuthService } from './services-login/auth-service';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'ws://127.0.0.1:8000', options: {} };
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,18 +35,17 @@ import { AuthService } from './services-login/auth-service';
     NavbarPageModule,
     ReactiveFormsModule,
     FormsModule,
-    NgChartsModule, 
+    NgChartsModule,
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
+    SocketIoModule.forRoot(config),  // Adicione esta linha
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    
     ApiService,
     AuthService,
-    
   ],
   bootstrap: [AppComponent],
 })

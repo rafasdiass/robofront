@@ -1,7 +1,6 @@
-// robo-signals.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { WebSocketService } from '../../services/websocket.service';
+import { ApiService } from '../../services/api.service';
 
 interface RobotDecision {
   currencyPair: string;
@@ -18,30 +17,22 @@ export class RoboSignalsPage implements OnInit, OnDestroy {
   decisions: RobotDecision[] = [];
   private decisionSubscription: Subscription | null = null;
 
-  constructor(private webSocketService: WebSocketService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    // Substitua '/ws/some_path/' pelo caminho real usado no roteamento do Django Channels
-    this.webSocketService.connect('ws://127.0.0.1:8000/ws/signal/'); 
-
-    this.decisionSubscription = this.webSocketService.messages$.subscribe(
-      (decision: RobotDecision) => {
-        this.processDecision(decision);
+    this.decisionSubscription = this.apiService.getRoboDecisions().subscribe(
+      (decisions: RobotDecision[]) => {
+        this.decisions = decisions;
       },
-      error => {
+      (error: any) => {
         console.error('Error fetching decisions:', error);
       }
     );
-  }
-
-  private processDecision(decision: RobotDecision): void {
-    this.decisions.push(decision);
   }
 
   ngOnDestroy(): void {
     if (this.decisionSubscription) {
       this.decisionSubscription.unsubscribe();
     }
-    this.webSocketService.close();
   }
 }
